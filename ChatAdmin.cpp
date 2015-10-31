@@ -20,22 +20,6 @@ ChatAdmin::ChatAdmin(ChatAdmin&ob) : ChatUser(ob)
 	work = ob.work;
 }
 
-ChatAdmin &ChatAdmin::operator=(const ChatAdmin &ob) 
-{
-	/*username = ob.username;
-	password = ob.password;
-	friendscounter = ob.friendscounter;
-	friends = new string[friendscounter];
-	for (auto i = 0; i < friendscounter; i++)
-	{
-		friends[i] = ob.friends[i];
-	}*/
-	ChatUser::operator=(ob);
-	salary = ob.salary;
-	work = ob.work;
-	return *this;
-}
-
 void ChatAdmin::Show()const 
 {
 	ChatUser::Show();
@@ -64,8 +48,12 @@ int ChatAdmin::getSalary()const
 	return salary; 
 }
 
+int ChatAdmin::doCalculateSalaryForYear() const
+{
+	return salary * 12;
+}
+
 ChatAdmin::~ChatAdmin()
 {
-	//work = nullptr;
 	salary = NULL;
 }

@@ -2,6 +2,7 @@
 #define CHATCLIENT_H
 
 #include <string>
+#include <iostream>
 #include "ChatUser.h"
 #include "ChatAdmin.h"
 
@@ -20,10 +21,17 @@ public:
 	ChatClient(string _name, int _foundationyear, ChatUser *_userbase[UsersCountSize], int _usercounter);
 	
 	friend ostream&operator<<(ostream& os, const ChatClient& ob);
+	friend istream&operator>>(istream& os, ChatClient& ob);
+	ChatUser* operator[](const int &number);
+
+	void ShowAdmins() const;
+	void ShowNotAdmins() const;
 
 	void setName(string _name);
 	void setFoundationYear(int _foundationyear);
 	
+	int getYearSalaryBudget()const;
+
 	string getName() const;
 	int getFoundationYear()const;
 	int getUserCounter() const;

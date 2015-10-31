@@ -18,13 +18,13 @@ public:
 	ChatUser(string _username, int _password, string *_friends, int _friendscounter);
 	ChatUser(ChatUser& ob);
 
-	ChatUser& operator=(const ChatUser &ob);
-
 	virtual void Show()const;
 
 	void setUsername(string _username);
 	void setPassword(int _password);
 	void setFriendsCounter(int _friendscounter);
+
+	virtual int doCalculateSalaryForYear() const { return 0; };
 
 	string getUsername()const;
 	int getPassword()const;

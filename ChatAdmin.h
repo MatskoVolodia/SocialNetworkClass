@@ -18,13 +18,13 @@ public:
 	ChatAdmin(string _work, int _salary, string _username, int _password, string *_friends, int _friendscounter);
 	ChatAdmin(ChatAdmin&ob);
 
-	ChatAdmin& operator=(const ChatAdmin &ob);
-
-	void Show()const;
+	virtual void Show()const;
 
 	void setWork(string _work);
 	void setSalary(int _salary);
 
+	int doCalculateSalaryForYear() const;
+	
 	string getWork()const;
 	int getSalary()const;
 

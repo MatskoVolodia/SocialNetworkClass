@@ -1,6 +1,5 @@
 #include "ChatClient.h"
 
-
 ChatClient::ChatClient()
 {
 	//name = nullptr;
@@ -29,6 +28,21 @@ ostream&operator<<(ostream& os, const ChatClient& ob)
 	{
 		ob.userbase[i]->Show();
 	}
+	os << " ============================== \n";
+	return os;
+}
+
+ChatUser* ChatClient::operator[](const int &number)
+{
+	return userbase[number];
+}
+
+istream&operator>>(istream& os, ChatClient& ob)
+{
+	cout << "Input name: ";
+	os >> ob.name;
+	cout << "Input Foundation Year: ";
+	os >> ob.foundationyear;
 	return os;
 }
 
@@ -57,9 +71,45 @@ int ChatClient::getUserCounter() const
 	return usercounter;
 }
 
+void ChatClient::ShowAdmins()const
+{
+	for (auto i = 0; i < usercounter; i++)
+	{
+		string temp = typeid(*(userbase[i])).name(); 
+		if (temp == "class ChatAdmin")
+		{
+			userbase[i]->Show();
+		}
+	}
+}
+void ChatClient::ShowNotAdmins()const
+{
+	for (auto i = 0; i < usercounter; i++)
+	{
+		string temp = typeid(*(userbase[i])).name();
+		if (!(temp == "class ChatAdmin"))
+		{
+			userbase[i]->Show();
+		}
+	}
+}
+
+int ChatClient::getYearSalaryBudget()const
+{
+	int res = 0;
+	for (auto i = 0; i < usercounter; i++)
+	{
+		string temp = typeid(*(userbase[i])).name();
+		if (temp == "class ChatAdmin")
+		{
+			res += userbase[i]->doCalculateSalaryForYear();
+		}
+	}
+	return res;
+}
+
 ChatClient::~ChatClient()
 {
-	//name = nullptr;
 	foundationyear = NULL;
-//	delete[]userbase;
+	delete *userbase;
 }

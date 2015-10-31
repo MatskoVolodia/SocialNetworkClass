@@ -1,17 +1,15 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstdlib>
 #include "ChatClient.h"
 using namespace std;
-
-template <typename TT>
-TT* PushBackAlternative(TT *temp, const TT &item, int &sizeb); // if i could use VECTOR then it wouldn't be necessary.Sorry for monkey-code
 
 int main()
 {
 	ifstream workingfile;
 	workingfile.open("DataBase.txt");
-
+	
 	string name;
 	getline(workingfile,name);
 	int year;
@@ -59,24 +57,11 @@ int main()
 		 }
 		if (workingfile) { getline(workingfile, temp); }// getline(workingfile, temp);
 	}
-
+	
 	ChatClient MyClient(name, year, base, basesize);
-
+	
 	cout << MyClient;
 	system("pause");
 	workingfile.close();
 	return 0;
-}
-
-template <typename TT>
-TT* PushBackAlternative(TT *temp, const TT &item, int &sizeb)
-{
-	TT *res; ++sizeb;
-	res = new TT[sizeb];
-	for (auto i = 0; i < sizeb - 1; i++)
-	{
-		res[i] = move(temp[i]);
-	}
-	res[sizeb - 1] = move(item);
-	return res;
 }
