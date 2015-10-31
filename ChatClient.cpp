@@ -6,15 +6,14 @@ ChatClient::ChatClient()
 	//name = nullptr;
 	foundationyear = NULL;
 	usercounter = NULL;
-	userbase = new ChatUser[0];
 }
 
-ChatClient::ChatClient(string _name, int _foundationyear, ChatUser *_userbase, int _usercounter)
+ChatClient::ChatClient(string _name, int _foundationyear, ChatUser *_userbase[UsersCountSize], int _usercounter)
 {
 	name = _name;
 	foundationyear = _foundationyear;
 	usercounter = _usercounter;
-	userbase = new ChatUser[usercounter];
+	//userbase = new ChatUser[usercounter];
 	for (auto i = 0; i < usercounter; i++)
 	{
 		userbase[i] = _userbase[i];
@@ -28,7 +27,7 @@ ostream&operator<<(ostream& os, const ChatClient& ob)
 	os << "\n ============================== \n User's list: \n";
 	for (auto i = 0; i < ob.usercounter; i++)
 	{
-		ob.userbase[i].Show();
+		ob.userbase[i]->Show();
 	}
 	return os;
 }
@@ -62,5 +61,5 @@ ChatClient::~ChatClient()
 {
 	//name = nullptr;
 	foundationyear = NULL;
-	delete[]userbase;
+//	delete[]userbase;
 }

@@ -44,7 +44,7 @@ void ChatUser::Show()const
 	{
 		cout << "   " <<friends[i] << '\n';
 	}
-	cout << '\n';
+	//cout << '\n';
 }
 
 ChatUser &ChatUser::operator=(const ChatUser &ob)

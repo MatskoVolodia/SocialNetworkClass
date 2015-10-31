@@ -1,12 +1,12 @@
 "Applied Mathematics Community"
 2015
 
-Users:
+4 Users:
 
 Username:
 MatskoVolodia
 1111
-Friends:
+3 Friends:
 MaslyankoA
 MalYur
 Fai
@@ -14,9 +14,27 @@ Fai
 Username:
 MalYur
 1234
-Friends:
+2 Friends:
 MatskoVolodia
 Zhuk
 Work:
 PR
 1324
+
+Username:
+Zhuk
+8888
+1 Friends:
+MalYur
+Work:
+Editor
+1324
+
+Username:
+Fai
+1234
+4 Friends:
+MatskoVolodia
+Ira
+Olya
+Maslyanko

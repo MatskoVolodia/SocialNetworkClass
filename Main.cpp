@@ -17,22 +17,31 @@ int main()
 	int year;
 	workingfile >> year;
 	string temp;
-	getline(workingfile, temp); getline(workingfile, temp); getline(workingfile, temp); 
-	ChatUser *base = new ChatUser[0];
-	int basesize = 0; getline(workingfile, temp); getline(workingfile, temp);
+	int basesize = -1;
+	int maincounter = -1;
+	getline(workingfile, temp); getline(workingfile, temp); 
+	workingfile >> basesize; 
+	getline(workingfile, temp);
+	ChatUser *base[UsersCountSize]; 
+	getline(workingfile, temp); getline(workingfile, temp);
 	while (workingfile)
 	{
+		++maincounter;
 		string username;
 		getline(workingfile, username);
 		int password;
 		workingfile >> password;
-		getline(workingfile, temp); getline(workingfile, temp);
-		string *friendsbase = new string[0]; 
-		int friendbasesize = 0;
 		getline(workingfile, temp);
-		while (temp.compare("Work:") && !temp.empty())
+		int friendbasesize = -1;
+		int friendcounter = -1;
+		workingfile >> friendbasesize;
+		getline(workingfile, temp);
+		string *friendsbase = new string[friendbasesize]; 
+		getline(workingfile, temp);
+		while (temp.compare("Work:") && !temp.empty() && workingfile)
 		{
-			friendsbase = PushBackAlternative<string>(friendsbase, temp, friendbasesize);
+			++friendcounter;
+			friendsbase[friendcounter] = temp;
 			getline(workingfile, temp);
 		}
 		string work; int salary = -1;
@@ -41,13 +50,14 @@ int main()
 			getline(workingfile, temp);
 			work = temp;
 			workingfile >> salary;
-			base = PushBackAlternative<ChatUser>(base, ChatAdmin(work, salary, username, password, friendsbase, friendbasesize), basesize);
+			base[maincounter] = new ChatAdmin(work, salary, username, password, friendsbase, friendbasesize);
+			getline(workingfile, temp); getline(workingfile, temp);
 		}
 		 else
 		 {
-			 base = PushBackAlternative<ChatUser>(base, ChatUser(username, password, friendsbase, friendbasesize), basesize);
+			base[maincounter] = new ChatUser(username, password, friendsbase, friendbasesize);
 		 }
-		getline(workingfile, temp);// getline(workingfile, temp);
+		if (workingfile) { getline(workingfile, temp); }// getline(workingfile, temp);
 	}
 
 	ChatClient MyClient(name, year, base, basesize);
@@ -65,8 +75,8 @@ TT* PushBackAlternative(TT *temp, const TT &item, int &sizeb)
 	res = new TT[sizeb];
 	for (auto i = 0; i < sizeb - 1; i++)
 	{
-		res[i] = temp[i];
+		res[i] = move(temp[i]);
 	}
-	res[sizeb - 1] = item;
+	res[sizeb - 1] = move(item);
 	return res;
 }

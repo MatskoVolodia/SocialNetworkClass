@@ -6,6 +6,7 @@
 #include "ChatAdmin.h"
 
 using namespace std;
+const int UsersCountSize = 2048; // well, I don't think than anybody need more ^^
 
 class ChatClient
 {
@@ -13,10 +14,10 @@ protected:
 	string name;
 	int foundationyear;
 	int usercounter;
-	ChatUser *userbase;
+	ChatUser *userbase[UsersCountSize];
 public:
 	ChatClient();
-	ChatClient(string _name, int _foundationyear, ChatUser *_userbase, int _usercounter);
+	ChatClient(string _name, int _foundationyear, ChatUser *_userbase[UsersCountSize], int _usercounter);
 	
 	friend ostream&operator<<(ostream& os, const ChatClient& ob);
 

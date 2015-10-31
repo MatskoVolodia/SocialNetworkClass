@@ -40,7 +40,8 @@ void ChatAdmin::Show()const
 {
 	ChatUser::Show();
 	cout << "* Work: " << getWork();
-	cout << "* Salary: " << getSalary();
+	cout << "\n* Salary: " << getSalary();
+	cout << endl;
 }
 
 void ChatAdmin::setWork(string _work)

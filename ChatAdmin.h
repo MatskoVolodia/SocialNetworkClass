@@ -20,7 +20,7 @@ public:
 
 	ChatAdmin& operator=(const ChatAdmin &ob);
 
-	virtual void Show()const;
+	void Show()const;
 
 	void setWork(string _work);
 	void setSalary(int _salary);
